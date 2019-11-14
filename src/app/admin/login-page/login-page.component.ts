@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
-import { User } from '../shared/interfaces';
-import { AuthServices } from '../shared/service/auth.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import {Component, OnInit} from '@angular/core'
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {User} from '../../shared/interfaces';
+import {AuthService} from '../shared/services/auth.service';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -15,23 +15,36 @@ export class LoginPageComponent implements OnInit {
   submitted = false
   message: string
 
-  constructor(private auth: AuthServices, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    public auth: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+  }
 
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {
-      if(params['loginAgain']) {
+      if (params['loginAgain']) {
         this.message = 'Пожалуйста, введите данные'
+      } else if (params['authFailed']) {
+        this.message = 'Сессия истекла. Введите данные заного'
       }
-    }) 
+    })
 
     this.form = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)])
+      email: new FormControl(null, [
+        Validators.required,
+        Validators.email
+      ]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(6)
+      ])
     })
   }
 
-  submit(){
-    if(this.form.invalid){
+  submit() {
+    if (this.form.invalid) {
       return
     }
 
@@ -50,5 +63,5 @@ export class LoginPageComponent implements OnInit {
       this.submitted = false
     })
   }
-
 }
+
