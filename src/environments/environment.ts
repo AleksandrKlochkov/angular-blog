@@ -1,4 +1,5 @@
 import { Environment } from './interface';
+import { keys } from './apikey.config';
 
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
@@ -6,8 +7,8 @@ import { Environment } from './interface';
 
 export const environment: Environment = {
   production: false,
-  apiKey: '',
-  fbDbUrl: ''
+  apiKey: keys.apiKey,
+  fbDbUrl: keys.fbDbUrl
 };
 
 /*

@@ -1,7 +1,8 @@
 import { Environment } from './interface';
+import { keys } from './apikey.config';
 
 export const environment: Environment = {
   production: true,
-  apiKey: '',
-  fbDbUrl: ''
+  apiKey: keys.apiKey,
+  fbDbUrl: keys.fbDbUrl
 };
