@@ -33,10 +33,10 @@
     {
       "name": "firebase-posts",
       "urls": [
-        "https://angular-blog-61640.firebaseio.com"
+        "https://angular-blog-61640.firebaseio.com/**"
       ],
       "cacheConfig": {
-        "maxSize": 0,
+        "maxSize": 5,
         "maxAge": "3600"
       }
     }
